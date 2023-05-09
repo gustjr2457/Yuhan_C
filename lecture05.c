@@ -30,32 +30,23 @@ int print_title_screen()
 	
 	return 0;
 }
-int main(){
-	int ans = 0;
-	int menu = 1;
-	while(menu){
-		print_title_screen();
-		printf("input>");
-		scanf("%d", &menu);
-		if(menu==2){
-			while(menu){
-				print_how_to_play_screen();
-				printf("return to menu? (1.Yes 2.No)");
-				scanf("%d", &menu);
-				if(menu == 1){
-				break;
-				}
-				else if(menu == 2){
-				continue;
-				}
-			}
-		}
-		else if(menu==3){
-			break;
-		}
-		else{
-			continue;
-		}
-	}
+int main()
+{
+	
+	int game_state = 1;
+	char map[465]; /* 가로 : 30 + 1 (개행문자) 세로 : 15 */
 
+	int i = 0;
+	while(i<465)
+	{
+		map[i]='0';
+		if(i % 31 == 0)
+			map[i]='\n';
+		i = i + 1;
+	}
+	map[i] = '\0';
+	printf("%s",map);
+	return 0;
+
+	
 }
