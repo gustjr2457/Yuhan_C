@@ -2,7 +2,7 @@
 
 int main(){
 	int hp = 30;
-	int damage;
+	int damage = 0;
 	printf("데미지를 입력하세요: ");
 	scanf("%d", &damage);
 	printf("주인공의 공격력: %d\n\n", damage);
@@ -15,5 +15,6 @@ int main(){
 		printf("몬스터의 남은 체력: %d \n", hp-damage);
 		printf("몬스터가 주인공을 공격하여 사망했습니다.\nGame Over\n");
 	}
+
 		
 }
