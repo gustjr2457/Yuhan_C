@@ -1,7 +1,7 @@
 ﻿#include <stdio.h>
 #include <windows.h>
 
-void game_start() {
+void game_main() {
 	char title[15][40];
 	char gs[9] = "Dino Run";
 	char st[8] = "1.Start";
@@ -74,7 +74,7 @@ int main()
 	int type2 = 0;
 	char yn;
 	while(type1){
-		game_start();
+		game_main();
 		int choice;
 		printf("input> ");
 		scanf("%d", &choice);
