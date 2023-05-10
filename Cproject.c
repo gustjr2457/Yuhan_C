@@ -1,4 +1,5 @@
-﻿#include <stdio.h>
+﻿
+#include <stdio.h>
 #include <windows.h>
 
 void game_main() {
@@ -72,7 +73,7 @@ int main()
 {
 	int type1 = 1;
 	int type2 = 0;
-	char yn;
+
 	while(type1){
 		game_main();
 		int choice;
