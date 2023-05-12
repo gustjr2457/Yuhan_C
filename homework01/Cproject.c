@@ -27,11 +27,10 @@ int main()
 					system("cls");
 					type2 = 0;
 				}
-				else if (type2 != 1 && type2 != 2){
-					system("cls");
-					continue;
-				}
-			}
+				else
+					type2 = 1;
+					
+				}			
 		}
 		else {
 			system("cls");
