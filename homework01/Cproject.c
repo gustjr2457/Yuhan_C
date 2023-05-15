@@ -14,7 +14,13 @@ int main()
 		scanf("%d", &choice);
 		if (choice == 3){
 			system("cls");
-			type1 = 0;
+			game_exit();
+			printf("input> ");
+			scanf("%d", &choice);
+			if (choice == 1)
+				type1 = 0;
+			else if (choice == 2)
+				system("cls");
 		}
 		else if (choice == 2){
 			type2 = 1;
