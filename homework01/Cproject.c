@@ -16,11 +16,13 @@ int main()
 			system("cls");
 			game_exit();
 			printf("input> ");
-			scanf("%d", &choice);
-			if (choice == 1)
+			scanf("%d", &type2);
+			if(type2 == 1)
 				type1 = 0;
-			else if (choice == 2)
+			else
 				system("cls");
+				continue;
+
 		}
 		else if (choice == 2){
 			type2 = 1;
@@ -38,7 +40,7 @@ int main()
 					
 				}			
 		}
-		else {
+		else{
 			system("cls");
 			continue;
 		}

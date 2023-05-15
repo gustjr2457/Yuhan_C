@@ -63,10 +63,8 @@ void game_help() {
 }
 
 void game_exit(){
-	char title[15][40];	
-	char ex[13] = "Are you sure";
-	char ex2[18] = "you want to exit?";
-	char ex3[13] = "(1.yes/2.no)";
+	char title[15][40];
+	char close[23] = "input number 1 to exit";
 	for (int i = 0; i < 15; i ++){
 		for (int j = 0; j < 40; j++){
 			if (i == 0 || i == 14)
@@ -81,15 +79,11 @@ void game_exit(){
 		}
 		title[i][39] = '\n';
 	}
-	for (int i = 0; i < 12; i++)
-		title[6][i+13] = ex[i];
-	
-	for (int i = 0; i < 17; i++)
-		title[7][i+11] = ex2[i];
-	for (int i = 0; i < 12; i++)
-		title[8][i+13] = ex3[i];
+	for (int i = 0; i <= 21; i++){
+		title[7][i+8] = close[i];
+	}
+
 	title[14][39] = '\0';
 	printf("%s\n", title);
-
 }
 
