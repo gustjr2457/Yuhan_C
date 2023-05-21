@@ -1,5 +1,35 @@
 #include <stdio.h>
+#include <string.h>
 #include "game.h"
+
+void game_title(){
+	char title[15][40];
+	for (int i = 0; i < 15; i++) {
+		for (int j = 0; j < 40; j++) {
+			if (i == 0 || i == 14)
+				title[i][j] = '-';
+			else if (j == 0 || j == 38)
+				title[i][j] = '|';
+			else
+				title[i][j] = ' ';
+			if ((i == 0 && j == 0) || (i == 14 && j == 38) ||
+				(i == 0 && j == 38) || (i == 14 && j == 0))
+				title[i][j] = '@';
+		}
+		title[i][39] = '\n';
+	}
+	title[14][39] = '\0';
+	char* title_ptr = *title;
+}
+
+void InsertMainString(const char* string, char* title, int x){
+	int length = strlen(string);
+	int middle = (40-(length-1))/2;
+	for (int i = 0; i <=(length-2); i++){
+		*title[x][i + middle] = string[i];
+	}
+
+}
 
 void game_screen(char* string) {
 	
