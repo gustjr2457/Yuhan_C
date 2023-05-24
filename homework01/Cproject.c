@@ -77,9 +77,8 @@ void InsertString(const char* string, int y) {
 		title[y][a + middle] = string[a];
 		GotoXYZero();
 		printf("%s\ninput> ", title);
+		Sleep(16);
 	}
-	Sleep(16);
-
 }
 
 void game_screen(int choose) {
@@ -108,7 +107,7 @@ void game_screen(int choose) {
 int main() {
 	int type1 = 1;
 	int type2 = 0;
-	
+
 	system("mode con:cols=100 lines=40");
 	system("cls");
 	start_screen();
@@ -147,4 +146,3 @@ int main() {
 		}
 	}
 }
-
