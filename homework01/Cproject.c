@@ -3,6 +3,7 @@
 #include <string.h>
 #include <windows.h>
 #include <time.h>
+#include <conio.h>
 
 void hideCursor() {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -107,17 +108,17 @@ void game_screen(int choose) {
 int main() {
 	int type1 = 1;
 	int type2 = 0;
-
+	
 	system("mode con:cols=100 lines=40");
 	system("cls");
 	start_screen();
 	while (type1) {
 		game_screen(1);
-		scanf("%d", &type1);
+		type1 = getch() - '0';
 		if (type1 == 3) {
 			screen_reset();
 			game_screen(3);
-			scanf("%d", &type2);
+			type2 = getch() - '0';
 			if (type2 == 1) {
 				system("cls");
 				type1 = 0;
@@ -131,7 +132,7 @@ int main() {
 			while (type2) {
 				GotoXYZero();
 				game_screen(2);
-				scanf("%d", &type2);
+				type2 = getch() - '0';
 				if (type2 == 1) {
 					GotoXYZero();
 					type2 = 0;
@@ -145,4 +146,5 @@ int main() {
 			continue;
 		}
 	}
+	return 0;
 }
