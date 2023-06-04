@@ -6,8 +6,10 @@
 #include <conio.h>
 #include <stdbool.h>
 
-#define WIDTH 90
-#define HEIGHT 50
+#define WIDTH 60
+#define HEIGHT 35
+#define BUILDING_SIZE 2
+#define NUM_BUILDINGS 3
 
 char title[30][80];
 int MainGameScreen[HEIGHT][WIDTH];
@@ -41,7 +43,18 @@ void BackGround(int PlayerX, int PlayerY) {
 				MainGameScreen[y][x] = 1;
 		}
 	}
-}
+	
+	for (int n = 0; n < NUM_BUILDINGS; n++) {
+		int startX = rand() % (WIDTH - BUILDING_SIZE);
+		int startY = rand() % (HEIGHT - BUILDING_SIZE);
+
+		for (int i = 0; i < BUILDING_SIZE; i++) {
+			for (int j = 0; j < BUILDING_SIZE; j++) {
+				MainGameScreen[startY + i][startX + j] = 3;
+			}
+		}
+	}
+}	
 
 void BackGroundString() {
 	for (int y = 0; y < HEIGHT; y++) {
@@ -52,6 +65,10 @@ void BackGroundString() {
 				printf("\x1b[40m \x1b[0m");
 			else if (MainGameScreen[y][x] == 2)
 				printf("\x1b[42m \x1b[0m");
+			else if (MainGameScreen[y][x] == 3)
+				printf("\x1b[46m \x1b[0m");
+			else if (MainGameScreen[y][x] == 4)
+				printf("\x1b[45m \x1b[0m");
 		}
 		printf("\n");
 	}
@@ -152,7 +169,8 @@ int main() {
 			int pX = 1;
 			int pY = 1;
 			int ch;
-			system("mode con cols=91 lines=51");
+			srand(time(NULL));
+			system("mode con cols=61 lines=36");
 			while (true) {
 				BackGround(pX, pY);
 				BackGroundString();
@@ -163,17 +181,17 @@ int main() {
 					if (pY != 1)
 						pY--;
 				}
-				if (GetAsyncKeyState('A') & 0x8000) {
+				else if (GetAsyncKeyState('A') & 0x8000) {
 					if (pX > 2)
 						pX = pX - 2;
 					if (pX <= 2)
 						pX = 1;
 				}
-				if (GetAsyncKeyState('S') & 0x8000) {
+				else if (GetAsyncKeyState('S') & 0x8000) {
 					if (pY != (HEIGHT - 2))
 						pY++;
 				}
-				if (GetAsyncKeyState('D') & 0x8000) {
+				else if (GetAsyncKeyState('D') & 0x8000) {
 					if (pX < (WIDTH - 3))
 						pX = pX + 2;
 					if (pX >= (WIDTH - 3))
