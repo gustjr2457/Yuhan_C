@@ -11,6 +11,13 @@
 #define BUILDING_SIZE 2
 #define NUM_BUILDINGS 3
 
+struct Character {
+	int atk;
+	int hp;
+} cr ;
+
+
+
 char title[30][80];
 int MainGameScreen[HEIGHT][WIDTH];
 
@@ -37,38 +44,38 @@ void BackGround(int PlayerX, int PlayerY) {
 				MainGameScreen[y][x] = 0;
 			else if (x == 0 || x == (WIDTH - 1))
 				MainGameScreen[y][x] = 0;
-			else if (x == PlayerX && y == PlayerY)
-				MainGameScreen[y][x] = 2;
 			else
 				MainGameScreen[y][x] = 1;
 		}
 	}
-	
-	for (int n = 0; n < NUM_BUILDINGS; n++) {
-		int startX = rand() % (WIDTH - BUILDING_SIZE);
-		int startY = rand() % (HEIGHT - BUILDING_SIZE);
-
-		for (int i = 0; i < BUILDING_SIZE; i++) {
-			for (int j = 0; j < BUILDING_SIZE; j++) {
-				MainGameScreen[startY + i][startX + j] = 3;
-			}
+	for (int y = 20; y < 22; y++) {
+		for (int x = 20; x < 22; x++) {
+			MainGameScreen[y-15][x+5] = 3;
+			MainGameScreen[y-5][x+20] = 3;
+			MainGameScreen[y+5][x-5] = 3;
 		}
 	}
+	for (int y = 0; y < HEIGHT; y++) {
+		for (int x = 0; x < WIDTH; x++) {
+			if ( x == PlayerX && y == PlayerY)
+				MainGameScreen[y][x] = 2;
+		}
+	}
+	
+
 }	
 
 void BackGroundString() {
 	for (int y = 0; y < HEIGHT; y++) {
 		for (int x = 0; x < WIDTH; x++) {
 			if (MainGameScreen[y][x] == 0)
-				printf("\x1b[47m \x1b[0m");
+				printf("\x1b[47m ");
 			else if (MainGameScreen[y][x] == 1)
-				printf("\x1b[40m \x1b[0m");
+				printf("\x1b[40m ");
 			else if (MainGameScreen[y][x] == 2)
-				printf("\x1b[42m \x1b[0m");
+				printf("\x1b[101m ");
 			else if (MainGameScreen[y][x] == 3)
-				printf("\x1b[46m \x1b[0m");
-			else if (MainGameScreen[y][x] == 4)
-				printf("\x1b[45m \x1b[0m");
+				printf("\x1b[44m \x1b[0m");
 		}
 		printf("\n");
 	}
@@ -135,20 +142,28 @@ void game_screen(int choose) {
 	hideCursor();
 	if (choose == 1) {
 		screen_reset();
-		InsertString("Dancing without the professor knowing", 10);
+		InsertString("RPG", 10);
 		InsertString("1.Start", 16);
 		InsertString("2.Help", 17);
 		InsertString("3.Exit", 18);
 	}
 	else if (choose == 2) {
 		screen_reset();
-		InsertString("Press the space bar to dance", 10);
-		InsertString("when the professor is not watching!", 11);
+		InsertString("Press the W,A,S,D keys to move the character", 10);
+		InsertString("Get on the portal and fight the enemy!", 11);
 		InsertString("Return to Main Screen?(1.yes/2. no)", 18);
 	}
 	else if (choose == 3) {
 		screen_reset();
 		InsertString("input number 1 to exit", 15);
+	}
+	else if (choose == 4) {
+		screen_reset();
+		InsertString("Choose your Character!", 10);
+		InsertString("1.Warrior", 16);
+		InsertString("2.Archor", 17);
+		InsertString("3.Magician", 18);
+		printf("input> ");
 	}
 }
 
@@ -158,7 +173,7 @@ void game_screen(int choose) {
 int main() {
 	int type1 = 1;
 	int type2 = 0;
-
+	int ChooseCharacter = 0;
 	system("mode con cols=100 lines=40");
 	system("cls");
 	start_screen();
@@ -168,10 +183,22 @@ int main() {
 		if (type1 == 1) {
 			int pX = 1;
 			int pY = 1;
-			int ch;
-			srand(time(NULL));
+			game_screen(4);
+			scanf("%d", &ChooseCharacter);
+			if (ChooseCharacter == 1) {
+				cr.atk = 10;
+				cr.hp = 100;
+			}
+			else if (ChooseCharacter == 2) {
+				cr.atk = 15;
+				cr.hp = 80;
+			}
+			else if	(ChooseCharacter == 3) {
+				cr.atk = 18;
+				cr.hp = 70;
+			}
 			system("mode con cols=61 lines=36");
-			while (true) {
+				while (true) {
 				BackGround(pX, pY);
 				BackGroundString();
 				hideCursor();
