@@ -14,6 +14,7 @@
 struct Character {
 	int atk;
 	int hp;
+	int level;
 } cr ;
 
 
