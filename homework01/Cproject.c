@@ -117,8 +117,8 @@ void start_screen() {
 	for (int i = 1; i < 29; i++) {
 		for (int j = 1; j < 78; j++) {
 			title[i][j] = ' ';
-			GotoXY(0, 0);
 		}
+		GotoXY(0, 0);
 		printf("%s\n", title);
 		Sleep(16);
 	}
@@ -282,29 +282,29 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 			}
 			while (true) {
 				GotoXY(1, 1);
-				printf("Monster HP: %d", monster.hp);
+				printf("\x1b[40mMonster HP: %d\x1b[0m", monster.hp);
 				GotoXY(1, 2);
-				printf("Monster ATK: %d", monster.atk);
+				printf("\x1b[40mMonster ATK: %d\x1b[0m", monster.atk);
 				GotoXY(1, 3);
-				printf("Player HP: %d", *plahp);
+				printf("\x1b[40mPlayer HP: %d\x1b[0m", *plahp);
 				GotoXY(1, 4);
-				printf("Player ATK: %d", *plaatk);
+				printf("\x1b[40mPlayer ATK: %d\x1b[0m", *plaatk);
 				GotoXY(1, 5);
-				printf("Money: %d", *plamoney);
+				printf("\x1b[40mMoney: %d\x1b[0m", *plamoney);
 				GotoXY(10, 33);
-				printf("1. Attack");
+				printf("\x1b[40m1. Attack\x1b[0m");
 				GotoXY(41, 33);
-				printf("2. Heal");
+				printf("\x1b[40m2. Heal\x1b[0m");
 				GotoXY(10, 40);
-				printf("3. Bag");
+				printf("\x1b[40m3. Bag\x1b[0m");
 				GotoXY(41, 40);
-				printf("4. Run");
+				printf("\x1b[40m4. Run\x1b[0m");
 				playing = getch() - '0';
 				if (playing == 1) {
 					monster.hp -= *plaatk;
 					playing = 0;
 					GotoXY(18, 27);
-					printf("Player attacked monster!");
+					printf("\x1b[40mPlayer attacked monster!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                        ");
@@ -316,14 +316,14 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					}
 					playing = 0;
 					GotoXY(18, 27);
-					printf("Player has healed!");
+					printf("\x1b[40mPlayer has healed!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                    ");
 				}
 				else if (playing == 3) {
 					GotoXY(18, 27);
-					printf("Not implemented!");
+					printf("\x1b[40mNot implemented!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                   ");
@@ -334,7 +334,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					int a = rand() % 4;
 					if (a == 0 || a == 1 || a == 2) {
 						GotoXY(15, 27);
-						printf("You have successfully escaped!");
+						printf("\x1b[40mYou have successfully escaped!\x1b[0m");
 						Sleep(1500);
 						GotoXY(15, 27);
 						printf("                              ");
@@ -343,7 +343,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					}
 					else if (a == 3) {
 						GotoXY(18, 27);
-						printf("You couldn't escape!");
+						printf("\x1b[40mYou couldn't escape!\x1b[0m");
 						Sleep(1500);
 						GotoXY(18, 27);
 						printf("                              ");
@@ -355,7 +355,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				if (monster.hp <= 0) {
 					GotoXY(18, 27);
-					printf("The monster is down!");
+					printf("\x1b[40mThe monster is down!\x1b[0m");
 					Sleep(1500);
 					*plamoney += 10;
 					GotoXY(18, 27);
@@ -364,7 +364,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				*plahp -= monster.atk;
 				GotoXY(18, 27);
-				printf("Monster attacked Player!");
+				printf("\x1b[40mMonster attacked Player!\x1b[0m");
 				Sleep(1500);
 				GotoXY(18, 27);
 				printf("                          ");
@@ -378,7 +378,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				if (*plahp <= 0) {
 					GotoXY(26, 27);
-					printf("You Died!");
+					printf("\x1b[40mYou Died!\x1b[0m");
 					*plahp = 0;
 					Sleep(1500);
 					gametype = 0;
@@ -416,29 +416,29 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 			}
 			while (true) {
 				GotoXY(1, 1);
-				printf("Monster HP: %d  ", monster.hp);
+				printf("\x1b[40mMonster HP: %d  \x1b[0m", monster.hp);
 				GotoXY(1, 2);
-				printf("Monster ATK: %d  ", monster.atk);
+				printf("\x1b[40mMonster ATK: %d  \x1b[0m", monster.atk);
 				GotoXY(1, 3);
-				printf("Player HP: %d", *plahp);
+				printf("\x1b[40mPlayer HP: %d\x1b[0m", *plahp);
 				GotoXY(1, 4);
-				printf("Player ATK: %d", *plaatk);
+				printf("\x1b[40mPlayer ATK: %d\x1b[0m", *plaatk);
 				GotoXY(1, 5);
-				printf("Money: %d", *plamoney);
+				printf("\x1b[40mMoney: %d\x1b[0m", *plamoney);
 				GotoXY(10, 33);
-				printf("1. Attack");
+				printf("\x1b[40m1. Attack\x1b[0m");
 				GotoXY(41, 33);
-				printf("2. Heal");
+				printf("\x1b[40m2. Heal\x1b[0m");
 				GotoXY(10, 40);
-				printf("3. Bag");
+				printf("\x1b[40m3. Bag\x1b[0m");
 				GotoXY(41, 40);
-				printf("4. Run");
+				printf("\x1b[40m4. Run\x1b[0m");
 				playing = getch() - '0';
 				if (playing == 1) {
 					monster.hp -= *plaatk;
 					playing = 0;
 					GotoXY(18, 27);
-					printf("player attacked monster!");
+					printf("\x1b[40mplayer attacked monster!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                        ");
@@ -450,14 +450,14 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					}
 					playing = 0;
 					GotoXY(18, 27);
-					printf("player has healed!");
+					printf("\x1b[40mplayer has healed!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                    ");
 				}
 				else if (playing == 3) {
 					GotoXY(18, 27);
-					printf("Not implemented!");
+					printf("\x1b[40mNot implemented!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                   ");
@@ -468,7 +468,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					int a = rand() % 4;
 					if (a == 0 || a == 1 || a == 2) {
 						GotoXY(15, 27);
-						printf("You have successfully escaped!");
+						printf("\x1b[40mYou have successfully escaped!\x1b[0m");
 						Sleep(1500);
 						GotoXY(15, 27);
 						printf("                              ");
@@ -477,7 +477,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					}
 					else if (a == 3) {
 						GotoXY(18, 27);
-						printf("You couldn't escape!");
+						printf("\x1b[40mYou couldn't escape!\x1b[0m");
 						Sleep(1500);
 						GotoXY(18, 27);
 						printf("                              ");
@@ -489,7 +489,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				if (monster.hp <= 0) {
 					GotoXY(18, 27);
-					printf("The monster is down!");
+					printf("\x1b[40mThe monster is down!\x1b[0m");
 					Sleep(2000);
 					*plamoney += 10;
 					GotoXY(18, 27);
@@ -500,7 +500,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				*plahp -= monster.atk;
 				GotoXY(18, 27);
-				printf("Monster attacked Player!");
+				printf("\x1b[40mMonster attacked Player!\x1b[0m");
 				Sleep(1500);
 				GotoXY(18, 27);
 				printf("                          ");
@@ -514,7 +514,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				if (*plahp <= 0) {
 					GotoXY(26, 27);
-					printf("You Died!");
+					printf("\x1b[40mYou Died!\x1b[0m");
 					*plahp = 0;
 					Sleep(1500);
 					gametype = 0;
@@ -569,29 +569,29 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 			}
 			while (true) {
 				GotoXY(1, 1);
-				printf("Monster HP: %d", monster.hp);
+				printf("\x1b[40mMonster HP: %d\x1b[0m", monster.hp);
 				GotoXY(1, 2);
-				printf("Monster ATK: %d", monster.atk);
+				printf("\x1b[40mMonster ATK: %d\x1b[0m", monster.atk);
 				GotoXY(1, 3);
-				printf("Player HP: %d", *plahp);
+				printf("\x1b[40mPlayer HP: %d\x1b[0m", *plahp);
 				GotoXY(1, 4);
-				printf("Player ATK: %d", *plaatk);
+				printf("\x1b[40mPlayer ATK: %d\x1b[0m", *plaatk);
 				GotoXY(1, 5);
-				printf("Money: %d", *plamoney);
+				printf("\x1b[40mMoney: %d\x1b[0m", *plamoney);
 				GotoXY(10, 33);
-				printf("1. Attack");
+				printf("\x1b[40m1. Attack\x1b[0m");
 				GotoXY(41, 33);
-				printf("2. Heal");
+				printf("\x1b[40m2. Heal\x1b[0m");
 				GotoXY(10, 40);
-				printf("3. Bag");
+				printf("\x1b[40m3. Bag\x1b[0m");
 				GotoXY(41, 40);
-				printf("4. Run");
+				printf("\x1b[40m4. Run\x1b[0m");
 				playing = getch() - '0';
 				if (playing == 1) {
 					monster.hp -= *plaatk;
 					playing = 0;
 					GotoXY(18, 27);
-					printf("player attacked monster!");
+					printf("\x1b[40mplayer attacked monster!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                        ");
@@ -603,14 +603,14 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					}
 					playing = 0;
 					GotoXY(18, 27);
-					printf("player has healed!");
+					printf("\x1b[40mplayer has healed!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                    ");
 				}
 				else if (playing == 3) {
 					GotoXY(18, 27);
-					printf("Not implemented!");
+					printf("\x1b[40mNot implemented!\x1b[0m");
 					Sleep(1500);
 					GotoXY(18, 27);
 					printf("                   ");
@@ -621,7 +621,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					int a = rand() % 4;
 					if (a == 0 || a == 1 || a == 2) {
 						GotoXY(15, 27);
-						printf("You have successfully escaped!");
+						printf("\x1b[40mYou have successfully escaped!\x1b[0m");
 						Sleep(1500);
 						GotoXY(15, 27);
 						printf("                              ");
@@ -630,7 +630,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					}
 					else if (a == 3) {
 						GotoXY(18, 27);
-						printf("You couldn't escape!");
+						printf("\x1b[40mYou couldn't escape!\x1b[0m");
 						Sleep(1500);
 						GotoXY(18, 27);
 						printf("                              ");
@@ -642,7 +642,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				if (monster.hp <= 0) {
 					GotoXY(18, 27);
-					printf("The monster is down!");
+					printf("\x1b[40mThe monster is down!\x1b[0m");
 					Sleep(2000);
 					*plamoney += 10;
 					GotoXY(18, 27);
@@ -653,7 +653,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				*plahp -= monster.atk;
 				GotoXY(18, 27);
-				printf("Monster attacked Player!");
+				printf("\x1b[40mMonster attacked Player!\x1b[0m");
 				Sleep(1500);
 				GotoXY(18, 27);
 				printf("                          ");
@@ -667,7 +667,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				}
 				if (*plahp <= 0) {
 					GotoXY(26, 27);
-					printf("You Died!");
+					printf("\x1b[40mYou Died!\x1b[0m");
 					Sleep(1500);
 					*plahp = 0;
 					gametype = 0;
@@ -733,17 +733,17 @@ int main() {
 					if (pY != 1)
 						pY--;
 				}
-				else if (GetAsyncKeyState('A') & 0x8000) {
+				if (GetAsyncKeyState('A') & 0x8000) {
 					if (pX > 2)
 						pX = pX - 2;
 					if (pX <= 2)
 						pX = 1;
 				}
-				else if (GetAsyncKeyState('S') & 0x8000) {
+				if (GetAsyncKeyState('S') & 0x8000) {
 					if (pY != (HEIGHT - 2))
 						pY++;
 				}
-				else if (GetAsyncKeyState('D') & 0x8000) {
+				if (GetAsyncKeyState('D') & 0x8000) {
 					if (pX < (WIDTH - 3))
 						pX = pX + 2;
 					if (pX >= (WIDTH - 3))
