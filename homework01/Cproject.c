@@ -13,7 +13,6 @@ char title[30][80];
 int MainGameScreen[HEIGHT][WIDTH];
 int DunGeonScreen[HEIGHT + 10][WIDTH];
 
-
 struct Monster {
 	int atk;
 	int hp;
@@ -158,7 +157,7 @@ void game_screen(int choose) {
 	hideCursor();
 	if (choose == 1) {
 		screen_reset();
-		InsertString("RPG", 10);
+		InsertString("Mini Console RPG", 10);
 		InsertString("1.Start", 16);
 		InsertString("2.Help", 17);
 		InsertString("3.Exit", 18);
@@ -188,9 +187,9 @@ void game_screen(int choose) {
 	}
 	else if (choose == 6) {
 		screen_reset();
-		InsertString("Press H = MAXHP Enhance(+10): 20Gold", 12);
-		InsertString("Press J = ATK Enhance(+5): 20Gold", 13);
-		InsertString("Press R = Resurrection: 30Gold", 14);
+		InsertString("Press H = MAXHP Enhance(+10): 15Gold", 12);
+		InsertString("Press J = ATK Enhance(+5): 15Gold", 13);
+		InsertString("Press R = Resurrection: 25Gold", 14);
 		InsertString("Press B to return to the game", 20);
 	}
 	else if (choose == 7) {
@@ -357,7 +356,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 				if (monster.hp <= 0) {
 					GotoXY(18, 27);
 					printf("The monster is down!");
-					Sleep(2000);
+					Sleep(1500);
 					*plamoney += 10;
 					GotoXY(18, 27);
 					printf("                     ");
