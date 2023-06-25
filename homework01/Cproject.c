@@ -21,7 +21,7 @@ struct Monster {
 void monsterstat(int mon) {
 	if (mon == 0) {
 		monster.atk = 10;
-		monster.hp = 20;
+		monster.hp = 35;
 		// Slime
 	}
 	else if (mon == 1) {
@@ -31,7 +31,7 @@ void monsterstat(int mon) {
 	}
 	else if (mon == 2) {
 		monster.atk = 8;
-		monster.hp = 20;
+		monster.hp = 40;
 		// MushRoom
 	}
 }
@@ -165,7 +165,7 @@ void game_screen(int choose) {
 	else if (choose == 2) {
 		screen_reset();
 		InsertString("Press the W,A,S,D keys to move the character", 10);
-		InsertString("Press F to enter the portal and fight monsters!", 11);
+		InsertString("Press Space bar to enter the portal and fight monsters!", 11);
 		InsertString("Return to Main Screen?(1.yes/2. no)", 18);
 	}
 	else if (choose == 3) {
@@ -237,10 +237,12 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 	hideCursor();
 	int gametype, montype, starthp, platype, playing;
 	gametype = 1;
+	montype = 0;
 	starthp = *playermhp;
 	while (gametype) {
 		srand(time(NULL));
-		montype = rand() % 3;
+		//montype = rand() % 3;
+
 		Sleep(1000);
 		DunGeonScreenReset();
 		if (montype == 0) {
@@ -310,8 +312,8 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					printf("                        ");
 				}
 				else if (playing == 2) {
-					*plahp += 10;
-					if (plahp >= starthp) {
+					*plahp += 20;
+					if (*plahp >= starthp) {
 						*plahp = starthp;
 					}
 					playing = 0;
@@ -385,6 +387,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					break;
 				}
 			}
+			montype = 1;
 		}
 		else if (montype == 1) {
 			monsterstat(1); //zombie
@@ -444,7 +447,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					printf("                        ");
 				}
 				else if (playing == 2) {
-					*plahp += 10;
+					*plahp += 20;
 					if (*plahp >= starthp) {
 						*plahp = starthp;
 					}
@@ -521,6 +524,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					break;
 				}
 			}
+			montype = 2;
 		}
 		else if (montype == 2) {
 			monsterstat(2); //MushRoom
@@ -597,7 +601,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					printf("                        ");
 				}
 				else if (playing == 2) {
-					*plahp += 10;
+					*plahp += 20;
 					if (*plahp >= starthp) {
 						*plahp = starthp;
 					}
@@ -674,6 +678,7 @@ void Dungeon(int* plaatk, int* plahp, int* playermhp, int* plamoney) {
 					break;
 				}
 			}
+			montype = 0;
 		}
 	}
 }
